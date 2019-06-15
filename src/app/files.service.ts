@@ -58,15 +58,15 @@ export class FilesService {
     for (let i = 0; i < logArray.length; i++) {
       if (i !== logArray.length - 1) {
         if (i === 0) {
-          vttConversion += `\n\n00:00.000 --> ${moment(logArray[i + 1].dateTime)
+          vttConversion += `\n\n0\n00:00.000 --> ${moment(logArray[i + 1].dateTime)
             .subtract(startTime)
-            .format('mm:ss.SSS')} \n${logArray[i].speed} ${logArray[i].speedUnit}`
+            .format('mm:ss.SSS')} \n${logArray[i].latitude} ${logArray[i].longitude} ${logArray[i].speed} ${logArray[i].speedUnit}`
         } else {
-          vttConversion += `\n\n${moment(logArray[i].dateTime)
+          vttConversion += `\n\n${i}\n${moment(logArray[i].dateTime)
             .subtract(startTime)
             .format('mm:ss.SSS')} --> ${moment(logArray[i + 1].dateTime)
             .subtract(startTime)
-            .format('mm:ss.SSS')} \n${logArray[i].speed} ${logArray[i].speedUnit}`
+            .format('mm:ss.SSS')} \n${logArray[i].latitude} ${logArray[i].longitude} ${logArray[i].speed} ${logArray[i].speedUnit}`
         }
       }
     }
