@@ -1,7 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core'
 import { MatTableDataSource } from '@angular/material'
 import { FilesService, VideoFile } from '../files.service'
-
 @Component({
   selector: 'app-video-list',
   templateUrl: './video-list.component.html',
@@ -22,7 +21,7 @@ export class VideoListComponent {
       }
     )
 
-    this.displayedColumns = ['name', 'size', 'extension', 'type', 'videoUrl']
+    this.displayedColumns = ['name', 'size']
   }
 
   applyFilter (filterValue: string): void {

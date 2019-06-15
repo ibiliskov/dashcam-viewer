@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 import { VideoFile } from './files.service'
+import { LogStamp } from '../app/log-stamp'
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,4 +15,7 @@ export class AppComponent {
     extension: '',
     type: '',
   }
+
+  videoLog: LogStamp
+  videoLogs: LogStamp[]
 }

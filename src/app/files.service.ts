@@ -34,8 +34,8 @@ export class FilesService {
         const videoLogProps = video.split(' ')
         log = {
           dateTime: new Date(`${videoLogProps.shift()} ${videoLogProps.shift()}`),
-          latitude: parseFloat(videoLogProps.shift().substring(1)),
           longitude: parseFloat(videoLogProps.shift().substring(1)),
+          latitude: parseFloat(videoLogProps.shift().substring(1)),
           speed: parseFloat(videoLogProps.shift()),
           speedUnit: videoLogProps.shift(),
         }

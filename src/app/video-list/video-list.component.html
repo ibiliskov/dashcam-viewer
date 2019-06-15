@@ -3,37 +3,16 @@
 </mat-form-field>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
-  <!-- Position Column -->
   <ng-container matColumnDef="name">
-    <th fxFlex="20" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Name</th>
-    <td fxFlex="20" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.name }}</td>
+    <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Name</th>
+    <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.name }}</td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="size">
-    <th fxFlex="20" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Size</th>
-    <td fxFlex="20" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.size }}</td>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="extension">
-    <th fxFlex="20" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Extension</th>
-    <td fxFlex="20" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.extension }}</td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="type">
-    <th fxFlex="20" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Type</th>
-    <td fxFlex="20" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.type }}</td>
-  </ng-container>
-
-  <ng-container matColumnDef="videoUrl">
-    <th fxFlex="20" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>VideoUrL</th>
-    <td fxFlex="20" fxLayoutAlign="center center" mat-cell *matCellDef="let element">
-      <button mat-button (click)="onClick(element)"><mat-icon>play_circle_outline</mat-icon></button>
-    </td>
+    <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Size</th>
+    <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.size | filesize }}</td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  <tr mat-row (click)="onClick(row)" *matRowDef="let row; columns: displayedColumns"></tr>
 </table>

@@ -17,9 +17,13 @@ import {
 } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { HttpClientModule } from '@angular/common/http'
+import { AgmCoreModule } from '@agm/core'
+import { FileSizeModule } from 'ngx-filesize'
+import { GoogleMapComponent } from './google-map/google-map.component'
+import { SpeedChartComponent } from './speed-chart/speed-chart.component'
 
 @NgModule({
-  declarations: [AppComponent, VideoListComponent, VideoPlayerComponent],
+  declarations: [AppComponent, VideoListComponent, VideoPlayerComponent, GoogleMapComponent, SpeedChartComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +37,11 @@ import { HttpClientModule } from '@angular/common/http'
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    FileSizeModule,
+    AgmCoreModule.forRoot({
+      apiKey: '',
+      libraries: ['geometry'],
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

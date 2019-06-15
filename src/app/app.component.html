@@ -1,20 +1,24 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
 </mat-toolbar>
-<mat-sidenav-container fxLayout="row" fxFill fxLayoutGap>
+<mat-sidenav-container fxLayout="column" fxFill>
   <mat-sidenav-content fxFlex>
-    <div fxFlex>
-      <div fxFlex="2"></div>
-      <div fxFlex="40">
-        <app-video-list fxLayout="column" (childEvent)="videoFile = $event"></app-video-list>
+    <div fxFlex="50" fxLayout="column">
+      <div fxLayout="row">
+        <app-video-list fxLayout="column" fxFlex="60" (childEvent)="videoFile = $event"></app-video-list>
+        <app-speed-chart fxLayout="column" [log]="videoLog" fxFlex [logs]="videoLogs" fxLayoutAlign="center center"></app-speed-chart>
       </div>
-      <div fxFlex></div>
-      <div fxFlex="40" fxLayout="column">
-        <div fxFlex="7"></div>
-        <app-video-player fxFlex fxLayout="column" [video]="videoFile" fxLayoutAlign="center"></app-video-player>
-        <div fxFlex="10"></div>
-      </div>
-      <div fxFlex="2"></div>
+      <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
+    </div>
+    <div fxFlex fxLayout="column">
+      <app-video-player
+        fxLayout="column"
+        fxFlex
+        [video]="videoFile"
+        (updateLog)="videoLog = $event"
+        (readyLogs)="videoLogs = $event"
+        fxLayoutAlign="start stretch"
+      ></app-video-player>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
