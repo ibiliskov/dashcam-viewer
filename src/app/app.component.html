@@ -10,15 +10,14 @@
       </div>
       <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
     </div>
-    <div fxFlex fxLayout="column">
+    <div fxFlex="50" fxLayout="column">
       <app-video-player
         fxLayout="column"
-        fxFlex
         [video]="videoFile"
         (updateLog)="videoLog = $event"
         (readyLogs)="videoLogs = $event"
-        fxLayoutAlign="start stretch"
       ></app-video-player>
+      <app-summary fxFlex [logs]="videoLogs"> </app-summary>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

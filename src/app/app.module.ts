@@ -14,6 +14,8 @@ import {
   MatToolbarModule,
   MatButtonModule,
   MatIconModule,
+  MatListModule,
+  MatRippleModule,
 } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { HttpClientModule } from '@angular/common/http'
@@ -21,9 +23,10 @@ import { AgmCoreModule } from '@agm/core'
 import { FileSizeModule } from 'ngx-filesize'
 import { GoogleMapComponent } from './google-map/google-map.component'
 import { SpeedChartComponent } from './speed-chart/speed-chart.component'
+import { SummaryComponent } from './summary/summary.component'
 
 @NgModule({
-  declarations: [AppComponent, VideoListComponent, VideoPlayerComponent, GoogleMapComponent, SpeedChartComponent],
+  declarations: [AppComponent, VideoListComponent, VideoPlayerComponent, GoogleMapComponent, SpeedChartComponent, SummaryComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -37,6 +40,8 @@ import { SpeedChartComponent } from './speed-chart/speed-chart.component'
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    MatListModule,
+    MatRippleModule,
     FileSizeModule,
     AgmCoreModule.forRoot({
       apiKey: '',
