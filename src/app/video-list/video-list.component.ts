@@ -11,11 +11,13 @@ export class VideoListComponent {
   dataSource: MatTableDataSource<VideoFile>
   displayedColumns: string[]
   videoData: VideoFile[]
+  videoFormats: string[] = ['.mp4', '.avi', '.mov', '.flv', '.wmv']
   @Output() childEvent = new EventEmitter()
   constructor (private filesService: FilesService) {
     this.filesService.getVideoFiles().subscribe(
       (data): void => {
         this.videoData = data.children
+        this.videoData = this.videoData.filter((video) => this.videoFormats.includes(video.extension))
         this.dataSource = new MatTableDataSource(this.videoData)
       }
     )
