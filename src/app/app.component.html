@@ -1,15 +1,17 @@
 <mat-toolbar color="primary">
-  <span>Eonon DashCam Viewer</span>
+  <span>{{ title }}</span>
 </mat-toolbar>
-
 <mat-sidenav-container fxLayout="row" fxFill fxLayoutGap>
   <mat-sidenav-content fxFlex>
     <div fxFlex>
-      <div fxFlex="35">
-        <app-video-list></app-video-list>
+      <div fxFlex="40">
+        <app-video-list fxLayout="column" (childEvent)="videoFile = $event"></app-video-list>
       </div>
-      <div fxFlex>
-        <app-video-player></app-video-player>
+      <div fxFlex="10"></div>
+      <div fxFlex="40" fxLayout="column">
+        <div fxFlex="7"></div>
+        <app-video-player fxFlex [video]="videoFile" fxLayoutAlign="center"></app-video-player>
+        <div fxFlex="10"></div>
       </div>
     </div>
   </mat-sidenav-content>

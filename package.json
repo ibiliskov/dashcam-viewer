@@ -37,6 +37,7 @@
     "@angular/language-service": "~7.1.0",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/video.js": "",
     "@types/node": "^8.9.5",
     "@types/webpack": "^4.4.27",
     "@types/webpack-env": "^1.13.9",
