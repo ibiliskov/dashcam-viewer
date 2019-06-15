@@ -18,16 +18,19 @@ module.exports = {
     '@typescript-eslint/no-parameter-properties': 'off',
     '@typescript-eslint/explicit-member-accessibility': 'off',
     '@typescript-eslint/interface-name-prefix': 'off',
-    '@typescript-eslint/member-delimiter-style': ['error', {
-      multiline: {
-        delimiter: 'none',
-        requireLast: true,
+    '@typescript-eslint/member-delimiter-style': [
+      'error',
+      {
+        multiline: {
+          delimiter: 'none',
+          requireLast: true,
+        },
+        singleline: {
+          delimiter: 'semi',
+          requireLast: false,
+        },
       },
-      singleline: {
-        delimiter: 'semi',
-        requireLast: false,
-      },
-    }],
+    ],
 
     // Possible Errors
     'no-async-promise-executor': 'error',
@@ -101,7 +104,7 @@ module.exports = {
     'array-bracket-newline': ['error', { multiline: true }],
     'array-bracket-spacing': ['error', 'never'],
     'array-element-newline': [
-      'error',
+      'off',
       {
         multiline: true,
         minItems: 3,
@@ -146,11 +149,7 @@ module.exports = {
     'consistent-this': ['error', 'that'],
     'eol-last': ['error', 'always'],
     'func-call-spacing': ['error', 'never'],
-    'func-name-matching': [
-      'error',
-      'always',
-      { considerPropertyDescriptor: true },
-    ],
+    'func-name-matching': ['error', 'always', { considerPropertyDescriptor: true }],
     'func-names': ['error', 'as-needed'],
     'func-style': ['error', 'declaration', { allowArrowFunctions: true }],
     'function-paren-newline': ['error', 'consistent'],
@@ -173,11 +172,7 @@ module.exports = {
         beforeLineComment: true,
       },
     ],
-    'lines-between-class-members': [
-      'error',
-      'always',
-      { exceptAfterSingleLine: true },
-    ],
+    'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
     'multiline-comment-style': ['error', 'separate-lines'],
     'multiline-ternary': ['error', 'always-multiline'],
     'new-cap': [
@@ -217,10 +212,7 @@ module.exports = {
       },
     ],
     'object-curly-spacing': ['error', 'always'],
-    'object-property-newline': [
-      'error',
-      { allowAllPropertiesOnSameLine: false },
-    ],
+    'object-property-newline': ['error', { allowAllPropertiesOnSameLine: false }],
     'one-var': ['error', 'never'],
     'one-var-declaration-per-line': ['error', 'always'],
     'operator-assignment': ['error', 'always'],
