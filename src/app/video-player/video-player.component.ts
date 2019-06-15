@@ -34,19 +34,12 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
     this.player.hide()
   }
 
-  ngOnChanges (changes: SimpleChanges): void {
+  async ngOnChanges (changes: SimpleChanges): Promise<void> {
     if (changes.video.currentValue.name !== '') {
       const tracks = this.player.remoteTextTracks()
-      if (tracks.length) {
-        for (let i = 0; i < tracks.length; i++) {
-          this.logArray = []
-          tracks.removeTrack(tracks[i])
-        }
-      }
-      this.loadPlayerCaptions()
       this.player.show()
-      this.player.pause()
       this.player.src(this.url + this.video.name)
+      await this.loadPlayerCaptions()
       this.player.ready(
         (): void => {
           this.emitReadyLogs(this.logArray)
@@ -68,7 +61,7 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
       `${this.url + this.video.name.substring(0, this.video.name.lastIndexOf('.'))}.log`
     )
     this.title = this.filesService.convertLogArrayToVtt(this.logArray)
-    this.player.addRemoteTextTrack(
+    await this.player.addRemoteTextTrack(
       {
         default: true,
         kind: 'subtitles',
@@ -76,7 +69,7 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
         label: 'English',
         src: URL.createObjectURL(new Blob([this.title], { type: 'text/plain' })),
       },
-      true
+      false
     )
   }
 
