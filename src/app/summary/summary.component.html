@@ -1,5 +1,8 @@
-<mat-list>
-  <mat-list-item>Maximum Speed: {{ routeInfo.maxSpeed | number: '1.0-2' }} Km/h</mat-list-item>
-  <mat-list-item>Average Speed: {{ routeInfo.avgSpeed | number: '1.0-2' }} Km/h</mat-list-item>
-  <mat-list-item>Distance: {{ routeInfo.distance | number: '1.0-2' }} m</mat-list-item>
-</mat-list>
+<mat-card *ngIf="routeInfo.distance !== 0">
+  <mat-card-header>
+    <mat-card-title>Trip Summary</mat-card-title>
+  </mat-card-header>
+  <mat-card-content> Maximum Speed: {{ routeInfo.maxSpeed | number: '1.0-2' }} Km/h</mat-card-content>
+  <mat-card-content> Average Speed: {{ routeInfo.avgSpeed | number: '1.0-2' }} Km/h </mat-card-content>
+  <mat-card-content> Distance: {{ routeInfo.distance / 1000 | number: '1.0-2' }} Km </mat-card-content>
+</mat-card>

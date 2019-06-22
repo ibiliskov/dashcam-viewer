@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
-
 import { AppRoutingModule } from './app-routing.module'
 import { AppComponent } from './app.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -16,7 +15,9 @@ import {
   MatIconModule,
   MatListModule,
   MatRippleModule,
+  MatCardModule,
 } from '@angular/material'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'
 import { FlexLayoutModule } from '@angular/flex-layout'
 import { HttpClientModule } from '@angular/common/http'
 import { AgmCoreModule } from '@agm/core'
@@ -42,6 +43,8 @@ import { SummaryComponent } from './summary/summary.component'
     MatIconModule,
     MatListModule,
     MatRippleModule,
+    MatCardModule,
+    MatSlideToggleModule,
     FileSizeModule,
     AgmCoreModule.forRoot({
       apiKey: '',
