@@ -1,24 +1,26 @@
-<mat-form-field fxLayout="column">
-  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
-</mat-form-field>
+<div fxFlex fxLayout="column">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+  </mat-form-field>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
-  <ng-container matColumnDef="name">
-    <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Name</th>
-    <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.name }}</td>
-  </ng-container>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
+    <ng-container matColumnDef="name">
+      <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Name</th>
+      <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
 
-  <ng-container matColumnDef="size">
-    <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Size</th>
-    <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.size | filesize }}</td>
-  </ng-container>
+    <ng-container matColumnDef="size">
+      <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Size</th>
+      <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.size | filesize }}</td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr
-    mat-row
-    matRipple
-    (click)="onClick(row)"
-    *matRowDef="let row; columns: displayedColumns"
-    [class.active]="selectedRow == row.name"
-  ></tr>
-</table>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-row
+      matRipple
+      (click)="onClick(row)"
+      *matRowDef="let row; columns: displayedColumns"
+      [class.active]="selectedRow == row.name"
+    ></tr>
+  </table>
+</div>

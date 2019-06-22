@@ -1,23 +1,29 @@
 <mat-toolbar color="primary">
   <span>{{ title }}</span>
 </mat-toolbar>
-<mat-sidenav-container fxLayout="column" fxFill>
-  <mat-sidenav-content fxFlex>
-    <div fxFlex="50" fxLayout="column">
-      <div fxLayout="row">
-        <app-video-list fxLayout="column" fxFlex="60" (childEvent)="videoFile = $event"></app-video-list>
-        <app-speed-chart fxLayout="column" [log]="videoLog" fxFlex [logs]="videoLogs" fxLayoutAlign="center center"></app-speed-chart>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="video-list" #sidenav [mode]="'side'" [opened]="isVideoListOpened">
+    <div>
+      <app-video-list (childEvent)="videoFile = $event"></app-video-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div fxLayoutGap="10px" fxLayout="row">
+      <div fxFlex="64px" class="folder-picker-toggle-button">
+        <button mat-raised-button class="toggleVideoList" (click)="isVideoListOpened = !isVideoListOpened">
+          <mat-icon class="material-icons">{{ isVideoListOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        </button>
       </div>
+    </div>
+    <div fxFlex="40">
       <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
     </div>
-    <div fxFlex="50" fxLayout="column">
-      <app-video-player
-        fxLayout="column"
-        [video]="videoFile"
-        (updateLog)="videoLog = $event"
-        (readyLogs)="videoLogs = $event"
-      ></app-video-player>
-      <app-summary fxFlex [logs]="videoLogs"> </app-summary>
+    <div fxFlex fxLayout="column">
+      <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
+      <div fxLayout="row">
+        <app-summary fxFlex [logs]="videoLogs"> </app-summary>
+        <app-speed-chart fxLayout="column" [log]="videoLog" fxFlex [logs]="videoLogs" fxLayoutAlign="center center"></app-speed-chart>
+      </div>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

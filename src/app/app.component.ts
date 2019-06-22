@@ -9,6 +9,7 @@ import { LogStamp } from '../app/log-stamp'
 })
 export class AppComponent {
   title = 'Eonon DashCam Viewer'
+  isVideoListOpened = true
   videoFile: VideoFile = {
     name: '',
     size: 0,
