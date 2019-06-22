@@ -6,6 +6,7 @@ import * as am4core from '@amcharts/amcharts4/core'
 import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 import am4themesKelly from '@amcharts/amcharts4/themes/kelly'
 import { LogStamp } from '../log-stamp'
+import { LogFileService } from '../log-file.service'
 
 am4core.useTheme(am4themesKelly)
 am4core.useTheme(am4themesAnimated)
@@ -19,15 +20,13 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
   @Output() updateLog = new EventEmitter()
   @Output() readyLogs = new EventEmitter()
   player: videojs.Player
-  title: string
-  logArray: LogStamp[]
   url: string = `${environment.serverUrl}/files/`
   options: object = {
     controls: true,
     autoplay: true,
   }
 
-  constructor (private filesService: FilesService) {}
+  constructor (private filesService: FilesService, private logFileService: LogFileService) {}
 
   ngAfterViewInit (): void {
     this.player = videojs('my-video', this.options)
@@ -36,48 +35,50 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
 
   async ngOnChanges (changes: SimpleChanges): Promise<void> {
     if (changes.video.currentValue.name !== '') {
-      const tracks = this.player.remoteTextTracks()
       this.player.show()
       this.player.src(this.url + this.video.name)
-      await this.loadPlayerCaptions()
+      this.loadPlayerCaptions()
       this.player.ready(
         (): void => {
-          this.emitReadyLogs(this.logArray)
-          tracks[0].on(
-            'cuechange',
-            (): void => {
-              this.emitUpdateLog(this.logArray[tracks[0].activeCues[0].id])
-            }
-          )
-
           this.player.load()
         }
       )
     }
   }
 
-  async loadPlayerCaptions (): Promise<void> {
-    this.logArray = await this.filesService.getLogToArray(
-      `${this.url + this.video.name.substring(0, this.video.name.lastIndexOf('.'))}.log`
-    )
-    this.title = this.filesService.convertLogArrayToVtt(this.logArray)
-    await this.player.addRemoteTextTrack(
-      {
-        default: true,
-        kind: 'subtitles',
-        srclang: 'en',
-        label: 'English',
-        src: URL.createObjectURL(new Blob([this.title], { type: 'text/plain' })),
-      },
-      false
+  loadPlayerCaptions (): void {
+    this.filesService.getLogString(`${this.url + this.video.name.substring(0, this.video.name.lastIndexOf('.'))}.log`).subscribe(
+      (logString): void => {
+        const logStamps = this.logFileService.logFileToArray(logString)
+        const vttSubtitle = this.logFileService.convertLogStampsToVtt(logStamps)
+        this.emitReadyLogs(logStamps)
+
+        const addedTrack = this.player.addRemoteTextTrack(
+          {
+            default: true,
+            kind: 'metadata',
+            srclang: 'en',
+            label: 'English',
+            src: URL.createObjectURL(new Blob([vttSubtitle], { type: 'text/plain' })),
+          },
+          false
+        ).track
+
+        addedTrack.addEventListener(
+          'cuechange',
+          (): void => {
+            this.emitUpdateLog(logStamps[addedTrack.activeCues[0].id])
+          }
+        )
+      }
     )
   }
 
-  emitUpdateLog (log: LogStamp): void {
-    this.updateLog.emit(log)
+  emitUpdateLog (logStamp: LogStamp): void {
+    this.updateLog.emit(logStamp)
   }
 
-  emitReadyLogs (logs: LogStamp[]): void {
-    this.readyLogs.emit(logs)
+  emitReadyLogs (logStamps: LogStamp[]): void {
+    this.readyLogs.emit(logStamps)
   }
 }

@@ -2,3 +2,10 @@
   cursor: pointer;
   opacity: 0.5;
 }
+
+.active {
+  background-color: grey;
+  .folder-path {
+    color: #424242;
+  }
+}

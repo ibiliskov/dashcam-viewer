@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:8080',
+  serverUrl: 'http://localhost:3000',
 }
 
 // For easier debugging in development mode, you can import the following file

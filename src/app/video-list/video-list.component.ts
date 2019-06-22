@@ -9,6 +9,7 @@ import { FilesService, VideoFile } from '../files.service'
 export class VideoListComponent {
   dataSource: MatTableDataSource<VideoFile>
   displayedColumns: string[]
+  selectedRow: string
   videoData: VideoFile[]
   videoFormats: string[] = ['.mp4', '.avi', '.mov', '.flv', '.wmv']
   @Output() childEvent = new EventEmitter()
@@ -16,7 +17,7 @@ export class VideoListComponent {
     this.filesService.getVideoFiles().subscribe(
       (data): void => {
         this.videoData = data.children
-        this.videoData = this.videoData.filter((video) => this.videoFormats.includes(video.extension))
+        this.videoData = this.videoData.filter((video): boolean => this.videoFormats.includes(video.extension))
         this.dataSource = new MatTableDataSource(this.videoData)
       }
     )
@@ -29,6 +30,7 @@ export class VideoListComponent {
   }
 
   onClick (video): void {
+    this.selectedRow = video.name
     this.childEvent.emit(video)
   }
 }
