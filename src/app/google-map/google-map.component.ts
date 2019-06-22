@@ -1,6 +1,6 @@
 import { Component, OnInit, NgModule, OnChanges, Input, SimpleChanges } from '@angular/core'
 import { LogStamp } from '../log-stamp'
-import { AgmCoreModule } from '@agm/core'
+import { AgmCoreModule, MapsAPILoader } from '@agm/core'
 import { LatLngLiteral } from '@agm/core/services/google-maps-types'
 
 @NgModule({
@@ -17,7 +17,9 @@ export class GoogleMapComponent implements OnInit, OnChanges {
   currentPosition: LatLngLiteral
   zoom: number
   points: LatLngLiteral[]
-  constructor () {}
+  markerIcon
+
+  constructor (private mapsAPILoader: MapsAPILoader) {}
   @Input() log: LogStamp
   @Input() logs: LogStamp[]
   ngOnInit (): void {
@@ -33,7 +35,7 @@ export class GoogleMapComponent implements OnInit, OnChanges {
     this.points = []
   }
 
-  ngOnChanges (changes: SimpleChanges): void {
+  async ngOnChanges (changes: SimpleChanges): Promise<void> {
     if (changes.logs) {
       if (this.logs) {
         this.startingPosition.lat = this.logs[0].latitude
@@ -47,6 +49,11 @@ export class GoogleMapComponent implements OnInit, OnChanges {
             lng: log.longitude,
           })
         )
+        await this.mapsAPILoader.load()
+        this.markerIcon = {
+          path: google.maps.SymbolPath.CIRCLE,
+          scale: 10,
+        }
         this.logs = []
       }
     }

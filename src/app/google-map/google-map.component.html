@@ -1,5 +1,5 @@
 <agm-map id="map" *ngIf="showMap" [latitude]="startingPosition.lat" [longitude]="startingPosition.lng" [zoom]="zoom">
-  <agm-marker [latitude]="currentPosition.lat" [longitude]="currentPosition.lng"></agm-marker>
+  <agm-marker [iconUrl]="markerIcon" [latitude]="currentPosition.lat" [longitude]="currentPosition.lng"></agm-marker>
   <agm-polyline>
     <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng"> </agm-polyline-point>
   </agm-polyline>
