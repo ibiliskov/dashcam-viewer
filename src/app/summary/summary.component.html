@@ -1,21 +1,33 @@
-<mat-card *ngIf="routeInfo.distance !== 0" fxFlex>
-  <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-around end">
-    <div fxLayout="column" fxLayoutAlign="space-around end">
-      <div>{{ routeInfo.maxSpeed | number: '1.0-2' }} Km/h</div>
+<mat-card class="trip-summary-card" *ngIf="routeInfo.distance !== 0" fxFlex>
+  <mat-card-content fxFlexFill fxLayout="column" fxLayoutAlign="space-around stretch">
+    <div fxLayout="column" fxLayoutAlign="center start">
       <div>
-        Max speed
+        <span class="mat-title digits">{{ routeInfo.maxSpeed | number: '1.0-2' }}</span>
+        <span class="mat-caption"> km/h</span>
+      </div>
+      <div fxLayoutAlign="center end">
+        <mat-icon>speedometer</mat-icon>
+        <span>Max</span>
       </div>
     </div>
-    <div fxLayout="column" fxLayoutAlign="space-around end">
-      <div>{{ routeInfo.avgSpeed | number: '1.0-2' }} Km/h</div>
+    <div fxLayout="column" fxLayoutAlign="center start">
       <div>
-        Average Speed
+        <span class="mat-title digits">{{ routeInfo.avgSpeed | number: '1.0-2' }}</span>
+        <span class="mat-caption"> km/h</span>
+      </div>
+      <div fxLayoutAlign="center end">
+        <mat-icon>av_timer</mat-icon>
+        <span>Average</span>
       </div>
     </div>
-    <div fxLayout="column" fxLayoutAlign="space-around end">
-      <div>{{ routeInfo.distance / 1000 | number: '1.0-2' }} Km</div>
+    <div fxLayout="column" fxLayoutAlign="center start">
       <div>
-        Distance
+        <span class="mat-title digits">{{ routeInfo.distance / 1000 | number: '1.0-2' }}</span>
+        <span class="mat-caption"> km</span>
+      </div>
+      <div fxLayoutAlign="center end">
+        <mat-icon>place</mat-icon>
+        <span>Distance</span>
       </div>
     </div>
   </mat-card-content>

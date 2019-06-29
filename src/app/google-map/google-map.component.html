@@ -1,6 +1,6 @@
 <div fxFlexFill fxLayout="column" *ngIf="showMap">
   <div class="re-center-button" fxLayoutAlign="end">
-    <button id="ReCenter" class="toggle-button controls button" (click)="centerMapAtCurrentLocation()">
+    <button mat-mini-fab class="center-map-button" (click)="centerMapAtCurrentLocation()">
       <mat-icon>my_location</mat-icon>
     </button>
   </div>

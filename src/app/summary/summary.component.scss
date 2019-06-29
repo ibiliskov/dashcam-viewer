@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+
+$digit-typography: mat-typography-config(
+  $font-family: 'Orbitron, monospace',
+);
+
+.digits {
+  font-family: mat-font-family($digit-typography);
+}
+
+.trip-summary-card {
+  border-radius: 0px;
+  padding: 8px;
+}
