@@ -31,7 +31,8 @@ export class GoogleMapComponent implements OnInit, OnChanges {
       lat: 0,
       lng: 0,
     }
-    this.zoom = 17
+
+    this.zoom = 15
     this.points = []
   }
 
@@ -50,16 +51,39 @@ export class GoogleMapComponent implements OnInit, OnChanges {
           })
         )
         await this.mapsAPILoader.load()
-        this.markerIcon = {
-          path: google.maps.SymbolPath.CIRCLE,
-          scale: 10,
+
+        if (!this.markerIcon) {
+          this.markerIcon = {
+            path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+            scale: 4,
+            rotation: 0,
+          }
         }
-        this.logs = []
       }
     }
     if (changes.log && changes.log.currentValue) {
-      this.currentPosition.lat = this.log.latitude
-      this.currentPosition.lng = this.log.longitude
+      this.updateMarkerPosition()
+    }
+  }
+
+  updateMarkerPosition (): void {
+    if (!(this.logs && this.logs.length > 0 || this.log)) {
+      return
+    }
+    this.currentPosition.lat = this.log.latitude
+    this.currentPosition.lng = this.log.longitude
+    const nextLog = this.logs[this.logs.indexOf(this.log) + 1]
+    if (!nextLog) {
+      return
+    }
+    const currentPosition = new google.maps.LatLng(this.currentPosition.lat, this.currentPosition.lng)
+    const nextPosition = new google.maps.LatLng(nextLog.latitude, nextLog.longitude)
+    if (this.log.speed > 1) {
+      this.markerIcon = {
+        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
+        scale: 4,
+        rotation: Math.round(google.maps.geometry.spherical.computeHeading(currentPosition, nextPosition)),
+      }
     }
   }
 }
