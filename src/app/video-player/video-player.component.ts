@@ -67,7 +67,9 @@ export class VideoPlayerComponent implements OnChanges, AfterViewInit {
         addedTrack.addEventListener(
           'cuechange',
           (): void => {
-            this.emitUpdateLog(logStamps[addedTrack.activeCues[0].id])
+            if (addedTrack.activeCues[0]) {
+              this.emitUpdateLog(logStamps[addedTrack.activeCues[0].id])
+            }
           }
         )
       }
