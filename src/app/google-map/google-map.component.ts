@@ -13,8 +13,8 @@ import { LatLngLiteral } from '@agm/core/services/google-maps-types'
 })
 export class GoogleMapComponent implements OnInit, OnChanges {
   showMap: boolean = false
-  startingPosition: LatLngLiteral
-  currentPosition: LatLngLiteral
+  centerPosition: LatLngLiteral
+  markerPosition: LatLngLiteral
   zoom: number
   points: LatLngLiteral[]
   markerIcon
@@ -23,11 +23,11 @@ export class GoogleMapComponent implements OnInit, OnChanges {
   @Input() log: LogStamp
   @Input() logs: LogStamp[]
   ngOnInit (): void {
-    this.startingPosition = {
+    this.centerPosition = {
       lat: 0,
       lng: 0,
     }
-    this.currentPosition = {
+    this.markerPosition = {
       lat: 0,
       lng: 0,
     }
@@ -39,10 +39,10 @@ export class GoogleMapComponent implements OnInit, OnChanges {
   async ngOnChanges (changes: SimpleChanges): Promise<void> {
     if (changes.logs) {
       if (this.logs) {
-        this.startingPosition.lat = this.logs[0].latitude
-        this.startingPosition.lng = this.logs[0].longitude
-        this.currentPosition.lat = this.logs[0].latitude
-        this.currentPosition.lng = this.logs[0].longitude
+        this.centerPosition.lat = this.logs[0].latitude
+        this.centerPosition.lng = this.logs[0].longitude
+        this.markerPosition.lat = this.logs[0].latitude
+        this.markerPosition.lng = this.logs[0].longitude
         this.showMap = true
         this.points = this.logs.map(
           (log): LatLngLiteral => ({
@@ -62,6 +62,7 @@ export class GoogleMapComponent implements OnInit, OnChanges {
       }
     }
     if (changes.log && changes.log.currentValue) {
+      await this.mapsAPILoader.load()
       this.updateMarkerPosition()
     }
   }
@@ -70,13 +71,13 @@ export class GoogleMapComponent implements OnInit, OnChanges {
     if (!(this.logs && this.logs.length > 0 || this.log)) {
       return
     }
-    this.currentPosition.lat = this.log.latitude
-    this.currentPosition.lng = this.log.longitude
+    this.markerPosition.lat = this.log.latitude
+    this.markerPosition.lng = this.log.longitude
     const nextLog = this.logs[this.logs.indexOf(this.log) + 1]
     if (!nextLog) {
       return
     }
-    const currentPosition = new google.maps.LatLng(this.currentPosition.lat, this.currentPosition.lng)
+    const currentPosition = new google.maps.LatLng(this.markerPosition.lat, this.markerPosition.lng)
     const nextPosition = new google.maps.LatLng(nextLog.latitude, nextLog.longitude)
     if (this.log.speed > 1) {
       this.markerIcon = {
@@ -85,5 +86,10 @@ export class GoogleMapComponent implements OnInit, OnChanges {
         rotation: Math.round(google.maps.geometry.spherical.computeHeading(currentPosition, nextPosition)),
       }
     }
+  }
+
+  centerMapAtCurrentLocation (): void {
+    this.centerPosition.lat = this.markerPosition.lat
+    this.centerPosition.lng = this.markerPosition.lng
   }
 }

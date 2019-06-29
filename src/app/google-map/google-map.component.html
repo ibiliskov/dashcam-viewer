@@ -1,6 +1,15 @@
-<agm-map id="map" *ngIf="showMap" [latitude]="startingPosition.lat" [longitude]="startingPosition.lng" [zoom]="zoom">
-  <agm-marker [iconUrl]="markerIcon" [latitude]="currentPosition.lat" [longitude]="currentPosition.lng"></agm-marker>
-  <agm-polyline>
-    <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng"> </agm-polyline-point>
-  </agm-polyline>
-</agm-map>
+<div fxFlexFill fxLayout="column" *ngIf="showMap">
+  <div class="re-center-button" fxLayoutAlign="end">
+    <button id="ReCenter" class="toggle-button controls button" (click)="centerMapAtCurrentLocation()">
+      <mat-icon>my_location</mat-icon>
+    </button>
+  </div>
+  <div class="google-map" fxFill>
+    <agm-map fxFill id="map" [latitude]="centerPosition.lat" [longitude]="centerPosition.lng" [zoom]="zoom" [mapTypeControl]="true">
+      <agm-marker [iconUrl]="markerIcon" [latitude]="markerPosition.lat" [longitude]="markerPosition.lng"></agm-marker>
+      <agm-polyline>
+        <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng"> </agm-polyline-point>
+      </agm-polyline>
+    </agm-map>
+  </div>
+</div>
