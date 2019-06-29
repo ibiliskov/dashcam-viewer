@@ -18,17 +18,18 @@ export class SpeedChartComponent implements OnChanges {
   hand: am4charts.ClockHand
   @Input() log: LogStamp
   @Input() logs: LogStamp[]
+  @Input() maxSpeed: number
   speedValue: am4core.Label
   constructor () {}
 
   ngOnChanges (changes: SimpleChanges): void {
-    if (changes.logs) {
+    if (changes.maxSpeed) {
       if (this.logs) {
         this.createSpeedMeterChart()
         this.logs = []
       }
     }
-    if (changes.log && changes.log.currentValue) {
+    if (changes.log && changes.log.currentValue && this.maxSpeed) {
       this.hand.showValue(this.log.speed, 1000, am4core.ease.linear)
       this.speedValue.text = Math.floor(this.log.speed).toString()
     }
@@ -39,12 +40,26 @@ export class SpeedChartComponent implements OnChanges {
     chart.fontSize = 12
     chart.hiddenState.properties.opacity = 0
     chart.innerRadius = -10
+    chart.startAngle = -210
+    chart.endAngle = 30
     const axis = chart.xAxes.push(new am4charts.ValueAxis() as any)
     axis.min = 0
-    axis.max = 220
+    axis.max = this.maxSpeed > 220 ? this.maxSpeed - this.maxSpeed % 10 + 10 : 220
+    axis.renderer.minGridDistance = 10
     axis.strictMinMax = true
     axis.renderer.grid.template.stroke = new am4core.InterfaceColorSet().getFor('background')
     axis.renderer.grid.template.strokeOpacity = 0.3
+
+    axis.renderer.labels.template.adapter.add(
+      'text',
+      (speedchartLabelValueDefault): string => {
+        const speedchartNumberValue = parseInt(speedchartLabelValueDefault)
+
+        return speedchartNumberValue === 0 || speedchartNumberValue / 10 % 2 === 1 || speedchartNumberValue === axis.max
+          ? speedchartLabelValueDefault
+          : ''
+      }
+    )
 
     const range0 = axis.axisRanges.create()
     range0.value = 0

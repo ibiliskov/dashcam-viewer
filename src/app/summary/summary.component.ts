@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core'
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core'
 import { LogStamp } from '../log-stamp'
 import {} from 'googlemaps'
 import { MapsAPILoader } from '@agm/core'
@@ -15,6 +15,7 @@ export interface RouteInfo {
 })
 export class SummaryComponent implements OnChanges {
   @Input() logs: LogStamp[]
+  @Output() maxSpeed = new EventEmitter()
   routeInfo: RouteInfo
   constructor (private mapsAPILoader: MapsAPILoader) {}
 
@@ -34,7 +35,12 @@ export class SummaryComponent implements OnChanges {
           avgSpeed: speedArray.reduce((accumulator, currentValue): number => accumulator + currentValue) / speedArray.length,
           distance: google.maps.geometry.spherical.computeLength(lngLatArray),
         }
+        this.emitMaxSpeed(this.routeInfo.maxSpeed)
       }
     }
+  }
+
+  emitMaxSpeed (maxSpeed: number): void {
+    this.maxSpeed.emit(maxSpeed)
   }
 }

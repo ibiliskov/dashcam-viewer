@@ -19,4 +19,5 @@ export class AppComponent {
 
   videoLog: LogStamp
   videoLogs: LogStamp[]
+  maxSpeed: number
 }
