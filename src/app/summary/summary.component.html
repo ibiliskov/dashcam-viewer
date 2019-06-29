@@ -1,8 +1,22 @@
-<mat-card *ngIf="routeInfo.distance !== 0">
-  <mat-card-header>
-    <mat-card-title>Trip Summary</mat-card-title>
-  </mat-card-header>
-  <mat-card-content> Maximum Speed: {{ routeInfo.maxSpeed | number: '1.0-2' }} Km/h</mat-card-content>
-  <mat-card-content> Average Speed: {{ routeInfo.avgSpeed | number: '1.0-2' }} Km/h </mat-card-content>
-  <mat-card-content> Distance: {{ routeInfo.distance / 1000 | number: '1.0-2' }} Km </mat-card-content>
+<mat-card *ngIf="routeInfo.distance !== 0" fxFlex>
+  <mat-card-content fxFlex fxLayout="column" fxLayoutAlign="space-around end">
+    <div fxLayout="column" fxLayoutAlign="space-around end">
+      <div>{{ routeInfo.maxSpeed | number: '1.0-2' }} Km/h</div>
+      <div>
+        Max speed
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-around end">
+      <div>{{ routeInfo.avgSpeed | number: '1.0-2' }} Km/h</div>
+      <div>
+        Average Speed
+      </div>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="space-around end">
+      <div>{{ routeInfo.distance / 1000 | number: '1.0-2' }} Km</div>
+      <div>
+        Distance
+      </div>
+    </div>
+  </mat-card-content>
 </mat-card>

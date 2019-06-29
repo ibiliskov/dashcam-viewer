@@ -13,3 +13,12 @@
 .video-picker-toggle-button {
   z-index: 10;
 }
+
+.assets-container,
+.video-container {
+  height: 810px;
+}
+
+.video-container {
+  margin-left: -64px;
+}

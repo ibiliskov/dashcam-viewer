@@ -8,19 +8,19 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content fxLayout="row">
-    <div fxFlex="50" fxLayout="column">
+    <div fxFlex="0 1 0%" fxLayout="column">
       <div fxFlex="32px" class="video-picker-toggle-button">
         <button mat-raised-button class="toggle-video-list" (click)="isVideoListOpened = !isVideoListOpened">
           <mat-icon class="material-icons">{{ isVideoListOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
         </button>
       </div>
-      <div fxFlex class="map-component">
-        <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
-      </div>
     </div>
-    <div fxFlex fxLayout="column" fxLayoutGap="10px">
+    <div fxFlex="1 1 75%" class="video-container">
       <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
-      <div fxLayout="column">
+    </div>
+    <div fxFlex fxLayout="column" class="assets-container">
+      <app-google-map fxFlex="65" [log]="videoLog" [logs]="videoLogs"> </app-google-map>
+      <div fxLayout="row" fxFlex="35">
         <app-speed-chart class="speed-chart" fxFlex="70" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
         <app-summary fxFlex="30" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
       </div>
