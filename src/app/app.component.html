@@ -7,26 +7,22 @@
       <app-video-list (childEvent)="videoFile = $event"></app-video-list>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <div>
-      <app-speed-chart
-        fxLayout="column"
-        fxFlex
-        fxLayoutAlign="center center"
-        [log]="videoLog"
-        [logs]="videoLogs"
-        [maxSpeed]="maxSpeed"
-      ></app-speed-chart>
+  <mat-sidenav-content fxLayout="row">
+    <div fxFlex="50" fxLayout="column">
+      <div fxFlex="32px" class="video-picker-toggle-button">
+        <button mat-raised-button class="toggle-video-list" (click)="isVideoListOpened = !isVideoListOpened">
+          <mat-icon class="material-icons">{{ isVideoListOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        </button>
+      </div>
+      <div fxFlex class="map-component">
+        <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
+      </div>
     </div>
-
-    <div fxFlex="40">
-      <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
-    </div>
-    <div fxFlex fxLayout="column">
+    <div fxFlex fxLayout="column" fxLayoutGap="10px">
       <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
-      <div fxLayout="row">
-        <app-summary fxFlex [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
-        <app-speed-chart fxLayout="column" [log]="videoLog" fxFlex [logs]="videoLogs" fxLayoutAlign="center center"></app-speed-chart>
+      <div fxLayout="column">
+        <app-speed-chart class="speed-chart" fxFlex="70" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
+        <app-summary fxFlex="30" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
       </div>
     </div>
   </mat-sidenav-content>
