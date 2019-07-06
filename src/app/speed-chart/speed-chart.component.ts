@@ -20,14 +20,12 @@ export class SpeedChartComponent implements OnChanges {
   @Input() logs: LogStamp[]
   @Input() maxSpeed: number
   speedValue: am4core.Label
-  darkChartBackground = false
   constructor () {}
 
   ngOnChanges (changes: SimpleChanges): void {
     if (changes.maxSpeed) {
       if (this.logs) {
         this.createSpeedMeterChart()
-        this.darkChartBackground = true
         this.logs = []
       }
     }

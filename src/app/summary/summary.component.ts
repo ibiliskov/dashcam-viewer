@@ -33,7 +33,7 @@ export class SummaryComponent implements OnChanges {
         this.routeInfo = {
           maxSpeed: Math.max(...speedArray),
           avgSpeed: speedArray.reduce((accumulator, currentValue): number => accumulator + currentValue) / speedArray.length,
-          distance: google.maps.geometry.spherical.computeLength(lngLatArray),
+          distance: google.maps.geometry.spherical.computeLength(lngLatArray) / 1000,
         }
         this.emitMaxSpeed(this.routeInfo.maxSpeed)
       }

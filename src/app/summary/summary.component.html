@@ -1,33 +1,30 @@
-<mat-card class="trip-summary-card" *ngIf="routeInfo.distance !== 0" fxFlex>
+<mat-card fxFlex class="mat-elevation-z0 trip-summary-card" *ngIf="routeInfo.distance !== 0">
   <mat-card-content fxFlexFill fxLayout="column" fxLayoutAlign="space-around stretch">
-    <div fxLayout="column" fxLayoutAlign="center start">
-      <div>
-        <span class="mat-title digits">{{ routeInfo.maxSpeed | number: '1.0-2' }}</span>
-        <span class="mat-caption"> km/h</span>
-      </div>
-      <div fxLayoutAlign="center end">
-        <mat-icon>speedometer</mat-icon>
-        <span>Max</span>
-      </div>
-    </div>
-    <div fxLayout="column" fxLayoutAlign="center start">
-      <div>
-        <span class="mat-title digits">{{ routeInfo.avgSpeed | number: '1.0-2' }}</span>
-        <span class="mat-caption"> km/h</span>
-      </div>
-      <div fxLayoutAlign="center end">
-        <mat-icon>av_timer</mat-icon>
-        <span>Average</span>
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div fxLayout="row" fxLayoutAlign="space-between end">
+        <span class="digits">{{ routeInfo.maxSpeed | number: '1.0-0' }}</span>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-icon>speedometer</mat-icon>
+          <span class="units"> km/h</span>
+        </div>
       </div>
     </div>
-    <div fxLayout="column" fxLayoutAlign="center start">
-      <div>
-        <span class="mat-title digits">{{ routeInfo.distance / 1000 | number: '1.0-2' }}</span>
-        <span class="mat-caption"> km</span>
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div fxLayout="row" fxLayoutAlign="space-between end">
+        <span class="digits">{{ routeInfo.avgSpeed | number: '1.0-0' }}</span>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-icon>av_timer</mat-icon>
+          <span class="units"> km/h</span>
+        </div>
       </div>
-      <div fxLayoutAlign="center end">
-        <mat-icon>place</mat-icon>
-        <span>Distance</span>
+    </div>
+    <div fxLayout="column" fxLayoutAlign="center stretch">
+      <div fxLayout="row" fxLayoutAlign="space-between end">
+        <span class="digits">{{ routeInfo.distance | number: '1.0-1' }}</span>
+        <div fxLayout="column" fxLayoutAlign="space-between center">
+          <mat-icon>place</mat-icon>
+          <span class="units"> km</span>
+        </div>
       </div>
     </div>
   </mat-card-content>

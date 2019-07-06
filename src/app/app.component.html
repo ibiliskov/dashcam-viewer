@@ -20,7 +20,7 @@
     </div>
     <div fxFlex fxLayout="column" class="assets-container">
       <app-google-map fxFlex="65" [log]="videoLog" [logs]="videoLogs"> </app-google-map>
-      <div fxLayout="row" fxFlex="35">
+      <div fxLayout="row" fxFlex="35" [ngClass]="{ 'speed-chart-summary-container': videoLogs }">
         <app-speed-chart class="speed-chart" fxFlex="70" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
         <app-summary fxFlex="30" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
       </div>
