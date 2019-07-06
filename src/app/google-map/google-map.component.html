@@ -6,8 +6,20 @@
   </div>
   <div class="google-map" fxFill>
     <agm-map fxFill id="map" [latitude]="centerPosition.lat" [longitude]="centerPosition.lng" [zoom]="zoom" [mapTypeControl]="true">
-      <agm-marker [iconUrl]="markerIcon" [latitude]="markerPosition.lat" [longitude]="markerPosition.lng"></agm-marker>
-      <agm-polyline>
+      <agm-marker [iconUrl]="startMarkerIcon" [latitude]="points[0].lat" [longitude]="points[0].lng" [markerClickable]="false"></agm-marker>
+      <agm-marker
+        [iconUrl]="endMarkerIcon"
+        [latitude]="points[points.length - 1].lat"
+        [longitude]="points[points.length - 1].lng"
+        [markerClickable]="false"
+      ></agm-marker>
+      <agm-marker
+        [iconUrl]="markerIcon"
+        [latitude]="markerPosition.lat"
+        [longitude]="markerPosition.lng"
+        [markerClickable]="false"
+      ></agm-marker>
+      <agm-polyline [clickable]="false" [strokeColor]="'#4285F4'" [strokeWeight]="5">
         <agm-polyline-point *ngFor="let point of points" [latitude]="point.lat" [longitude]="point.lng"> </agm-polyline-point>
       </agm-polyline>
     </agm-map>

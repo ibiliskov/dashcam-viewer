@@ -17,7 +17,9 @@ export class GoogleMapComponent implements OnInit, OnChanges {
   markerPosition: LatLngLiteral
   zoom: number
   points: LatLngLiteral[]
-  markerIcon
+  markerIcon: google.maps.Symbol
+  startMarkerIcon: google.maps.Symbol
+  endMarkerIcon: google.maps.Symbol
 
   constructor (private mapsAPILoader: MapsAPILoader) {}
   @Input() log: LogStamp
@@ -55,9 +57,30 @@ export class GoogleMapComponent implements OnInit, OnChanges {
         if (!this.markerIcon) {
           this.markerIcon = {
             path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-            scale: 4,
+            fillColor: '#3367D6',
+            fillOpacity: 1,
+            scale: 5,
+            strokeColor: '#FFF',
+            strokeWeight: 1,
             rotation: 0,
           }
+        }
+        this.startMarkerIcon = {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: '#3AC41B',
+          fillOpacity: 1,
+          scale: 5,
+          strokeColor: '#FFF',
+          strokeWeight: 1,
+        }
+
+        this.endMarkerIcon = {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: '#DD3C19',
+          fillOpacity: 1,
+          scale: 5,
+          strokeColor: '#FFF',
+          strokeWeight: 1,
         }
       }
     }
@@ -82,7 +105,11 @@ export class GoogleMapComponent implements OnInit, OnChanges {
     if (this.log.speed > 1) {
       this.markerIcon = {
         path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-        scale: 4,
+        fillColor: '#3367D6',
+        fillOpacity: 1,
+        scale: 5,
+        strokeColor: '#FFF',
+        strokeWeight: 1,
         rotation: Math.round(google.maps.geometry.spherical.computeHeading(currentPosition, nextPosition)),
       }
     }
