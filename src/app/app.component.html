@@ -2,7 +2,7 @@
   <span>{{ title }}</span>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav class="video-list" #sidenav [mode]="'side'" [opened]="isVideoListOpened">
+  <mat-sidenav class="video-list" #sidenav [mode]="'over'" [opened]="true" [autoFocus]="false">
     <div>
       <app-video-list (childEvent)="videoFile = $event"></app-video-list>
     </div>
@@ -10,8 +10,8 @@
   <mat-sidenav-content fxLayout="row">
     <div fxFlex="0 1 0%" fxLayout="column">
       <div fxFlex="32px" class="video-picker-toggle-button">
-        <button mat-raised-button class="toggle-video-list" (click)="isVideoListOpened = !isVideoListOpened">
-          <mat-icon class="material-icons">{{ isVideoListOpened ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+        <button mat-raised-button class="toggle-video-list" (click)="sidenav.toggle()">
+          <mat-icon class="material-icons">chevron_right</mat-icon>
         </button>
       </div>
     </div>
