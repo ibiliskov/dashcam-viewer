@@ -7,7 +7,7 @@
       <app-video-list (childEvent)="videoFile = $event"></app-video-list>
     </div>
   </mat-sidenav>
-  <mat-sidenav-content fxLayout="row">
+  <mat-sidenav-content class="sidenav-content" fxLayout="row">
     <div fxFlex="0 1 0%" fxLayout="column">
       <div fxFlex="32px" class="video-picker-toggle-button">
         <button mat-raised-button class="toggle-video-list" (click)="sidenav.toggle()">
