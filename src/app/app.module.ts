@@ -25,7 +25,7 @@ import { FileSizeModule } from 'ngx-filesize'
 import { GoogleMapComponent } from './google-map/google-map.component'
 import { SpeedChartComponent } from './speed-chart/speed-chart.component'
 import { SummaryComponent } from './summary/summary.component'
-
+import { FormsModule } from '@angular/forms'
 @NgModule({
   declarations: [AppComponent, VideoListComponent, VideoPlayerComponent, GoogleMapComponent, SpeedChartComponent, SummaryComponent],
   imports: [
@@ -50,6 +50,7 @@ import { SummaryComponent } from './summary/summary.component'
       apiKey: '',
       libraries: ['geometry'],
     }),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
