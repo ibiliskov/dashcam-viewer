@@ -101,7 +101,7 @@ export class SpeedChartComponent implements OnChanges {
 
     const speedUnit = chart.radarContainer.createChild(am4core.Label)
     speedUnit.isMeasured = false
-    speedUnit.fontSize = 15
+    speedUnit.fontSize = 13
     speedUnit.x = am4core.percent(50)
     speedUnit.y = am4core.percent(100)
     speedUnit.horizontalCenter = 'middle'

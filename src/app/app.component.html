@@ -15,15 +15,17 @@
         </button>
       </div>
     </div>
-    <div fxFlex="1 1 75%" class="video-container">
-      <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
-    </div>
-    <div fxFlex fxLayout="column" class="assets-container">
-      <app-google-map fxFlex="65" [log]="videoLog" [logs]="videoLogs"> </app-google-map>
-      <div fxLayout="row" fxFlex="35" [ngClass]="{ 'speed-chart-summary-container': videoLogs }">
-        <app-speed-chart class="speed-chart" fxFlex="70" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
-        <app-summary fxFlex="30" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
+    <div fxFlex="1 1 75%" class="video-container" fxLayout="column" fxLayoutAlign="start stretch">
+      <div>
+        <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
       </div>
+      <div fxLayout="row" fxLayoutAlign="start end" class="speed-chart-trip-summary">
+        <app-speed-chart fxFlex="0 0 25%" class="speed-chart" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
+        <app-summary fxFlex="33" fxFlexOffset="8" class="trip-summary" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
+      </div>
+    </div>
+    <div fxFlex fxLayout="column" class="map-container">
+      <app-google-map fxFlex [log]="videoLog" [logs]="videoLogs"> </app-google-map>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

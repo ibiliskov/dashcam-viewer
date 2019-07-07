@@ -1,5 +1,5 @@
-<mat-card fxFlex class="mat-elevation-z0 trip-summary-card" *ngIf="routeInfo.distance !== 0">
-  <mat-card-content fxFlexFill fxLayout="column" fxLayoutAlign="space-around stretch">
+<mat-card class="trip-summary-card mat-elevation-z0" *ngIf="routeInfo.distance !== 0" fxFlex>
+  <mat-card-content fxFlexFill fxLayout="row" fxLayoutAlign="space-around stretch">
     <div fxLayout="column" fxLayoutAlign="center stretch">
       <div fxLayout="row" fxLayoutAlign="space-between end">
         <span class="digits">{{ routeInfo.maxSpeed | number: '1.0-0' }}</span>

@@ -14,7 +14,7 @@
   z-index: 10;
 }
 
-.assets-container,
+.map-container,
 .video-container {
   height: 810px;
 }
@@ -23,10 +23,25 @@
   margin-left: -64px;
 }
 
-.speed-chart-summary-container {
-  background: linear-gradient(to bottom, rgba(55, 57, 61, 1) 0%, rgba(0, 0, 0, 1) 100%);
+.speed-chart {
+  height: 239px;
+}
+
+.trip-summary {
+  height: 100px;
+}
+
+.speed-chart-trip-summary {
+  margin-top: -269px;
+  padding-bottom: 30px;
+  background: linear-gradient(to bottom, rgba(117, 116, 116, 0), rgb(61, 61, 61));
+  z-index: 10;
 }
 
 .sidenav-content {
   overflow: hidden;
+}
+
+:host /deep/ .vjs-control-bar {
+  z-index: 15;
 }
