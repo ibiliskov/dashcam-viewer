@@ -8,8 +8,8 @@ import { LogStamp } from '../app/log-stamp'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Eonon DashCam Viewer'
-  toggleInfo = false
+  title = 'DashCam Viewer'
+  toggleInfo = true
 
   videoFile: VideoFile = {
     name: '',

@@ -24,17 +24,14 @@
 }
 
 .speed-chart {
-  height: 239px;
-}
-
-.trip-summary {
-  height: 100px;
+  height: 250px;
+  padding-bottom: 5px;
 }
 
 .speed-chart-trip-summary {
-  margin-top: -269px;
+  margin-top: -280px;
   padding-bottom: 30px;
-  background: linear-gradient(to bottom, rgba(117, 116, 116, 0), rgb(61, 61, 61));
+  background: linear-gradient(to bottom, rgba(117, 116, 116, 0), #000000cf);
   z-index: 10;
 }
 
@@ -42,13 +39,39 @@
   overflow: hidden;
 }
 
+.toggle-video-list {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.navbar {
+  background: rgb(200, 66, 255);
+  background: linear-gradient(120deg, rgba(200, 66, 255, 1) 0%, rgba(194, 0, 170, 1) 50%, rgba(218, 87, 0, 1) 100%);
+}
+
+h1 {
+  font-family: Montserrat;
+  padding-left: 8px;
+
+  mat-icon {
+    font-size: 22px;
+    margin-right: 8px;
+  }
+}
+
 :host /deep/ .vjs-control-bar {
   z-index: 15;
 }
 
 /deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
-  background-color: #ffffff;
+  background-color: #e0e0e0;
 }
 /deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
   background-color: #ffffff;
+}
+
+:host /deep/ .mat-slide-toggle-content {
+  font-family: Montserrat;
+  padding-left: 8px;
+  font-size: 14px;
 }

@@ -16,16 +16,16 @@ describe('AppComponent', (): void => {
     expect(app).toBeTruthy()
   })
 
-  it('should have as title \'Eonon DashCam Viewer\'', (): void => {
+  it('should have as title \'DashCam Viewer\'', (): void => {
     const fixture = TestBed.createComponent(AppComponent)
     const app = fixture.debugElement.componentInstance
-    expect(app.title).toEqual('Eonon DashCam Viewer')
+    expect(app.title).toEqual('DashCam Viewer')
   })
 
   it('should render title in a h1 tag', (): void => {
     const fixture = TestBed.createComponent(AppComponent)
     fixture.detectChanges()
     const compiled = fixture.debugElement.nativeElement
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to Eonon DashCam Viewer!')
+    expect(compiled.querySelector('h1').textContent).toContain('DashCam Viewer!')
   })
 })

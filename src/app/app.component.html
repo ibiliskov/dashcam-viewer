@@ -1,6 +1,9 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" color="primary">
-  <span>{{ title }}</span>
-  <mat-slide-toggle [(ngModel)]="toggleInfo" *ngIf="videoLogs">Hide info</mat-slide-toggle>
+<mat-toolbar class="navbar" fxLayout="row" fxLayoutAlign="space-between center" color="primary">
+  <h1 fxFlex fxLayoutAlign="start center">
+    <mat-icon class="material-icons">linked_camera</mat-icon>
+    {{ title }}
+  </h1>
+  <mat-slide-toggle [(ngModel)]="toggleInfo" *ngIf="videoLogs">Info overlay</mat-slide-toggle>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav class="video-list" #sidenav [mode]="'over'" [opened]="true" [autoFocus]="false">
@@ -20,7 +23,7 @@
       <div>
         <app-video-player [video]="videoFile" (updateLog)="videoLog = $event" (readyLogs)="videoLogs = $event"></app-video-player>
       </div>
-      <div *ngIf="!toggleInfo" fxLayout="row" fxLayoutAlign="start end" [ngClass]="{ 'speed-chart-trip-summary': videoLogs }">
+      <div *ngIf="toggleInfo" fxLayout="row" fxLayoutAlign="start end" [ngClass]="{ 'speed-chart-trip-summary': videoLogs }">
         <app-speed-chart fxFlex="0 0 25%" class="speed-chart" [log]="videoLog" [logs]="videoLogs" [maxSpeed]="maxSpeed"></app-speed-chart>
         <app-summary fxFlex="33" fxFlexOffset="8" class="trip-summary" [logs]="videoLogs" (maxSpeed)="maxSpeed = $event"> </app-summary>
       </div>

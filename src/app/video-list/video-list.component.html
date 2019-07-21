@@ -1,17 +1,20 @@
 <div fxFlex fxLayout="column">
-  <mat-form-field>
-    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter" />
+  <mat-form-field class="search-input mat-elevation-z3">
+    <div fxLayout="row">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search" />
+      <mat-icon fxFlex="24px" id="search-icon" matPrefix>search</mat-icon>
+    </div>
   </mat-form-field>
 
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z3">
+  <table mat-table [dataSource]="dataSource">
     <ng-container matColumnDef="name">
-      <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Name</th>
-      <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.name }}</td>
+      <th fxFlex="50" fxLayoutAlign="start center" mat-header-cell *matHeaderCellDef>Name</th>
+      <td fxFlex="50" fxLayoutAlign="start center" mat-cell *matCellDef="let element">{{ element.name }}</td>
     </ng-container>
 
     <ng-container matColumnDef="size">
-      <th fxFlex="50" fxLayoutAlign="center center" mat-header-cell *matHeaderCellDef>Size</th>
-      <td fxFlex="50" fxLayoutAlign="center center" mat-cell *matCellDef="let element">{{ element.size | filesize }}</td>
+      <th fxFlex="50" fxLayoutAlign="end center" mat-header-cell *matHeaderCellDef>Size</th>
+      <td fxFlex="50" fxLayoutAlign="end center" mat-cell *matCellDef="let element">{{ element.size | filesize }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

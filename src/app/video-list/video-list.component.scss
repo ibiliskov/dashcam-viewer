@@ -1,11 +1,59 @@
+$focused: #fff;
+
 .mat-row:hover {
   cursor: pointer;
   opacity: 0.5;
+}
+
+.mat-header-row {
+  height: 48px;
+  margin-top: -20px;
 }
 
 .active {
   background-color: grey;
   .folder-path {
     color: #424242;
+  }
+}
+:host /deep/ .mat-form-field-flex {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+:host /deep/ .mat-input-element {
+  line-height: 24px;
+}
+
+:host /deep/ .mat-form-field-label {
+  color: rgba(128, 128, 128, 0.7);
+}
+
+.search-input {
+  #search-icon {
+    color: rgba(128, 128, 128, 0.7);
+  }
+
+  margin-bottom: 25px;
+}
+
+:host /deep/ .mat-form-field-underline {
+  width: 352px;
+  margin-left: 24px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+:host /deep/ .mat-focused {
+  .mat-form-field-ripple {
+    background-color: $focused;
+  }
+
+  #search-icon,
+  .mat-form-field-label {
+    color: $focused;
+  }
+
+  .mat-input-element {
+    caret-color: $focused;
   }
 }
