@@ -72,13 +72,13 @@ There are Prettier and ESLint configs in root folder, most editors should suppor
 
 ### To Do
 
-[x] Live demo  
-[ ] Drag'n'drop support (open local files)  
-[ ] Download as SRT  
-[ ] Add sample server output  
-[ ] Support different dashcam log files  
-[ ] Unit conversion  
-[ ] Switch to better map library
+- [x] Live demo
+- [ ] Drag'n'drop support (open local files)
+- [ ] Download as SRT
+- [ ] Add sample server output
+- [ ] Support different dashcam log files
+- [ ] Unit conversion
+- [ ] Switch to better map library
 
 ## License
 
