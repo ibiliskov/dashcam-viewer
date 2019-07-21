@@ -1,6 +1,7 @@
 {
-  "name": "folder-diff-viewer",
-  "version": "0.0.0",
+  "name": "dashcam-viewer",
+  "version": "1.0.0",
+  "description": "View dashcam videos with extra information and live map",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -64,5 +65,20 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~3.1.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ibiliskov/dashcam-viewer.git"
+  },
+  "keywords": [
+    "dash",
+    "dashcam",
+    "dashcam viewer"
+  ],
+  "author": "Ivan Biliskov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ibiliskov/dashcam-viewer/issues"
+  },
+  "homepage": "https://github.com/ibiliskov/dashcam-viewer#readme"
 }
